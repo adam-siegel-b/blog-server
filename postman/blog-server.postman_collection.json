@@ -1,0 +1,24 @@
+{
+	"info": {
+		"_postman_id": "a518281c-d877-4fb1-ac09-c13ebd0da5a6",
+		"name": "blog-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello world",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1337",
+					"host": [
+						"localhost"
+					],
+					"port": "1337"
+				}
+			},
+			"response": []
+		}
+	]
+}
