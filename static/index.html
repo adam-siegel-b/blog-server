@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>geo org chart</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="geo org chart">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+</head>
+
+<body>
+  <div tabindex="650" id="map"></div>
+
+  <div class="form modal hide">
+    <a href="_#" id="signintoggle">login</a>
+    <a href="_#" id="signuptoggle">sign up</a>
+    <a href="_#" id="close-form">[X]</a>
+    <div class="signin">
+      <input type="text" placeholder="username" id="username"/>
+      <input type="password" placeholder="password" id="password"/>
+      <button type="button">login</button>
+    </div>
+    <div class="signup">
+      <input type="text" placeholder="username" id="username"/>
+      <input type="password" placeholder="password" id="password"/>
+      <input type="password" placeholder="password" id="password"/>
+      <button type="button">sign up</button>
+    </div>
+    <div class="message">
+      <p id="status"></p>
+    </div> 
+  </div>
+  <div class="user modal">
+    <a href="_#" id="close-user">[X]</a>
+    <div class="upsertuser">
+      <input type="text" placeholder="display name" id="username"/>
+      <div class="section">
+        <p>location</p>
+        <input type="text" placeholder="location name" id="placename"/>
+        <input type="text" placeholder="lat" id="lat"/>
+        <input type="text" placeholder="lon" id="lon"/>
+      </div>
+      <div class="section">
+        <p>select your manager</p>
+        <select id="standard-select">
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+          <option value="Option 3">Option 3</option>
+          <option value="Option 4">Option 4</option>
+          <option value="Option 5">Option 5</option>
+          <option value="Option length">Option that has too long of a value to fit</option>
+        </select>
+      </div>
+      <button type="button">update</button>
+    </div>
+    <div class="signout">
+      <a href="_#" id="signout">sign out</a>
+    </div> 
+  </div>
+
+  <script src="js/plugins.js"></script>
+  <script src="js/geoFindMe.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

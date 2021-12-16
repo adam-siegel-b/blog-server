@@ -14,6 +14,6 @@ func HelloWorld(c *gin.Context) {
 	c.JSON(http.StatusOK, hello)
 }
 
-func GetPosts(c *gin.Context) {
+func GetPeople(c *gin.Context) {
 
 }

@@ -5,13 +5,12 @@
 ##
 FROM golang:1.16-buster AS build
 
-WORKDIR /app
+LABEL maintainer="Adam Siegel <adam.siegel@slalom.com>"
 
-COPY go.mod ./
-COPY go.sum ./
+COPY go.mod go.sum /go/src/github.com/adam-siegel-b/geo-org-chart/
+WORKDIR /go/src/github.com/adam-siegel-b/geo-org-chart/server
 RUN go mod download
-
-COPY *.go ./
+COPY . /go/src/github.com/adam-siegel-b/geo-org-chart
 
 RUN go build -o /geo-org-chart
 
@@ -24,7 +23,7 @@ WORKDIR /
 
 COPY --from=build /geo-org-chart /geo-org-chart
 
-EXPOSE 8080
+EXPOSE 1337 1337
 
 USER nonroot:nonroot
 

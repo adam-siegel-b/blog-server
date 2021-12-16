@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   database:
-    image: postgres
+    image: postgres:latest
     env_file: .env
     restart: always
     ports:
@@ -20,6 +20,6 @@ services:
     networks:
       - default
     ports:
-    - "8080:8080"
+    - "1337:1337"
 volumes:
   data:

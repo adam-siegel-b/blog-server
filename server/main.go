@@ -6,11 +6,8 @@ import (
 
 func main() {
 	router := gin.Default()
-	router.GET("/", HelloWorld)
+	router.GET("/hello", HelloWorld)
+	router.Static("/static", "./../static")
 
-	router.GET("/posts", GetPosts)
-	router.POST("/posts", NewPost)
-	router.PUT("/posts", UpdatePost)
-	router.DELETE("/posts", DeletePost)
 	router.Run(":1337")
 }
