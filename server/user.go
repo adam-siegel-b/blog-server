@@ -78,6 +78,7 @@ func CreateUser(c *gin.Context) {
 func UpdateUser(c *gin.Context) {
 	var s Slalomer
 	var s1 Slalomer
+	var l1 Location
 	// Db Connection
 	dbURI := fmt.Sprintf("postgres://%s:%s@database:5432/%s", os.Getenv("POSTGRES_USER"), os.Getenv("POSTGRES_PASSWORD"), os.Getenv("POSTGRES_DB"))
 	conn, err := pgx.Connect(context.Background(), dbURI)
@@ -102,6 +103,7 @@ func UpdateUser(c *gin.Context) {
 	}
 	// get the values and turn them into a slalomer object
 	c.BindJSON(&s1)
+	c.BindJSON(&l1)
 
 	// Validate email
 	if !validEmail(s1.Email) {
