@@ -7,11 +7,12 @@ type Message struct {
 }
 
 type Slalomer struct {
-	ID       string
-	Name     string
-	Email    string
-	Photo    string
-	Location Location
+	ID       string   `json:"id"`
+	Name     string   `json:"user" binding:"required"`
+	Email    string   `json:"email" binding:"required"`
+	Password string   `json:"pass"`
+	Photo    string   `json:"photo"`
+	Location Location `json:"_" `
 }
 
 type Location struct {

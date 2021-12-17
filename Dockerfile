@@ -22,6 +22,11 @@ FROM gcr.io/distroless/base-debian10
 WORKDIR /
 
 COPY --from=build /geo-org-chart /geo-org-chart
+ADD . /static
+COPY --from=build /go/src/github.com/adam-siegel-b/geo-org-chart/static/ /static/
+# USER root:root
+# RUN chmod 755 /static
+# RUN 'chown -R nonroot:nonroot /static/'
 
 EXPOSE 1337 1337
 
