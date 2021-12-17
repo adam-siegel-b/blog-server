@@ -32,8 +32,6 @@ func main() {
 	router.Use(sessions.Sessions("mysession", store))
 	// testing functions
 	router.GET("/hello", HelloWorld)
-	router.GET("/pwd", pwd)
-	router.GET("/env", env)
 
 	// Auth
 	router.POST("/user", CreateUser)

@@ -27,16 +27,16 @@
 <body>
   <div tabindex="650" id="map"></div>
 
+  <button type="button" id="loginup">log in</button>
+  <button type="button" id="edituser">edit</button>
   <div class="form modal">
-    <a href="_#" id="signintoggle">login</a>
-    <a href="_#" id="signuptoggle">sign up</a>
     <a href="_#" id="close-form">[X]</a>
     <div class="signin">
-      <input type="text" placeholder="username" id="username"/>
+      <input type="text" placeholder="username or email" id="username"/>
       <input type="password" placeholder="password" id="password"/>
       <button type="button">login</button>
     </div>
-    <div class="signup">
+    <div class="signup hide">
       <input type="text" placeholder="username" name="username"/>
       <input type="text" placeholder="email" name="email"/>
       <input type="password" placeholder="password" name="password"/>
@@ -46,6 +46,8 @@
     <div class="message">
       <p id="status"></p>
     </div> 
+    <a href="_#" id="signintoggle" class="hide">login</a>
+    <a href="_#" id="signuptoggle">sign up</a>
   </div>
   <div class="user modal hide">
     <a href="_#" id="close-user">[X]</a>

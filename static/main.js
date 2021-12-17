@@ -51,6 +51,40 @@ const main = () => {
         document.querySelector('.form.modal').classList.add("hide");
     });
 
+    // signup & login 
+    let loginToggle = document.getElementById('signintoggle');
+    loginToggle.addEventListener('click', (event)=>{
+        event.preventDefault();
+        document.querySelector('.signin').classList.remove("hide");
+        document.querySelector('.signup').classList.add("hide");
+        document.getElementById('signuptoggle').classList.remove("hide")
+        event.target.classList.add("hide");
+    });
+
+    let signupToggle = document.getElementById('signuptoggle');
+    signupToggle.addEventListener('click', (event)=>{
+        event.preventDefault();
+        document.querySelector('.signin').classList.add("hide");
+        document.querySelector('.signup').classList.remove("hide");
+        document.getElementById('signintoggle').classList.remove("hide")
+        event.target.classList.add("hide");
+    });
+
+    // main menu toggles
+    let closeUser = document.getElementById('signintoggle');
+    closeUser.addEventListener('click', (event)=>{
+        event.preventDefault();
+        document.querySelector('.user.modal').classList.add("hide");
+        document.querySelector('.form.modal').classList.remove("hide");
+    });
+
+    let closeForm = document.getElementById('signuptoggle');
+    closeForm.addEventListener('click', (event)=>{
+        event.preventDefault();
+        document.querySelector('.form.modal').classList.add("hide");
+        document.querySelector('.user.modal').classList.remove("hide");
+    }); 
+
     // My marker listener
     mymarker.on('dragend', (event) => {
         let latlng = event.target.getLatLng();

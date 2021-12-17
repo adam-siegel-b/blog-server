@@ -293,6 +293,24 @@ body,
   font-weight: 800;
 }
 
+#edituser,
+#loginup {
+  color: black;
+  background: white;
+  padding: .35em 1em;
+  border: 1px black solid;
+  border-radius: .6em;
+  width: 6em;
+  font-weight: 800;
+  right:1em;
+  top:1em;
+  display:block;
+  position: absolute;
+  z-index: 900;
+}
+
+#edituser:hover,
+#loginup:hover,
 .modal button:hover{
   background: #1BE1F2;
   color:#666;
@@ -423,5 +441,12 @@ label {
 
 .select + label {
   margin-top: 2rem;
+}
+
+#signintoggle.hide,
+#signuptoggle.hide,
+.modal .signin.hide,
+.modal .signup.hide{
+  display: none;
 }
 
