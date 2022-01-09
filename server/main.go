@@ -35,12 +35,12 @@ func main() {
 
 	// Auth
 	router.POST("/user", CreateUser)
+	router.PUT("/login", LogIn)
 	router.PUT("/user", UpdateUser)
-	router.GET("/user", GetUser)
+	router.GET("/user/", GetUser)
+	router.DELETE("/user", DeleteUser)
 
 	router.GET("/users", GetAllUsers)
-
-	router.PUT("/login", LogIn)
 
 	sp := os.Getenv("STATIC_ROOT")
 	if len(sp) == 0 {

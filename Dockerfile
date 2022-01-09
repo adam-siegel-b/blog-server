@@ -28,7 +28,7 @@ COPY --from=build /go/src/github.com/adam-siegel-b/geo-org-chart/static/ /static
 # RUN chmod 755 /static
 # RUN 'chown -R nonroot:nonroot /static/'
 
-EXPOSE 1337 1337
+EXPOSE 1337
 
 USER nonroot:nonroot
 

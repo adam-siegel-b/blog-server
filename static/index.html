@@ -28,20 +28,22 @@
   <div tabindex="650" id="map"></div>
 
   <button type="button" id="loginup">log in</button>
-  <button type="button" id="edituser">edit</button>
+  <button type="button" id="edituser" class="hide">edit</button>
   <div class="form modal">
     <a href="_#" id="close-form">[X]</a>
     <div class="signin">
       <input type="text" placeholder="username or email" id="username"/>
       <input type="password" placeholder="password" id="password"/>
+      <span id="login-errors" class="errors"></span>
       <button type="button">login</button>
     </div>
     <div class="signup hide">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="text" placeholder="email" name="email"/>
-      <input type="password" placeholder="password" name="password"/>
-      <input type="password" placeholder="password" name="password2"/>
-      <button type="button">sign up</button>
+      <input id="signup-user" type="text" placeholder="username" name="username"/>
+      <input id="signup-email" type="text" placeholder="email" name="email"/>
+      <input id="signup-password" type="password" placeholder="password" name="password"/>
+      <input id="signup-password2" type="password" placeholder="password" name="password2"/>
+      <span id="signup-errors" class="errors"></span>
+      <button id="signup" type="button">sign up</button>
     </div>
     <div class="message">
       <p id="status"></p>
@@ -54,24 +56,29 @@
     <div class="upsertuser">
       <div class="section">
         <p>user info</p>
-        <input type="text" placeholder="display name" id="username"/>
-        <input type="text" placeholder="email" name="email" disabled/>
+        <input type="hidden" name="userid" id="userid"/>
+        <input type="text" placeholder="display name" id="displayname"/>
+        <input type="text" placeholder="email" name="email" disabled id="accountemail"/>
     </div>
+      <span id="edit-error" class="errors"></span>
       <div class="section">
         <p>location</p>
         <input type="text" placeholder="location name" id="placename"/>
         <input type="text" placeholder="lat" id="lat"/>
         <input type="text" placeholder="lon" id="lon"/>
       </div>
-      <button type="button">update</button>
+      <button type="button" id="updateUser">update</button>
     </div>
     <div class="signout">
-      <a href="_#" id="signout">sign out</a>
+      <a href="#_" id="signout">sign out</a>
     </div> 
   </div>
 
   <script src="plugins.js"></script>
   <script src="geoFindMe.js"></script>
+  <script src="validator.js"></script>
+  <script src="ajax.js"></script>
+  <script src="login.js"></script>
   <script src="main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

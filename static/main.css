@@ -445,8 +445,12 @@ label {
 
 #signintoggle.hide,
 #signuptoggle.hide,
+button.hide,
 .modal .signin.hide,
 .modal .signup.hide{
-  display: none;
+  display: none !important;
 }
 
+.errors{
+  color:red;
+}
