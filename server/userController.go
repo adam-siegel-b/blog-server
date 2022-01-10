@@ -94,6 +94,7 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(http.StatusNotFound, msg)
 		return
 	}
+
 	if loc.Valid {
 		s.Location.ID = loc.String
 		err = getLocation(c, &s.Location, conn)
@@ -105,7 +106,11 @@ func UpdateUser(c *gin.Context) {
 		}
 	}
 	// get the values and turn them into a slalomer object
-	c.BindJSON(&s1)
+	err = c.BindJSON(&s1)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "parseError: %+v\n", err)
+		return
+	}
 	if IsValidUUID(s1.ID) {
 		s.ID = s1.ID
 	}
@@ -129,7 +134,7 @@ func UpdateUser(c *gin.Context) {
 	}
 
 	// validate the user is from slalom
-	if len(s1.Email) < 1 && !validSlalomEmail(s1.Email) {
+	if len(s1.Email) < 1 || !validSlalomEmail(s1.Email) {
 		fmt.Fprintf(os.Stderr, "not a slalom email: %v\n", s.Email)
 		msg := Message{http.StatusForbidden, "not a slalom email", s.Email}
 		c.JSON(http.StatusForbidden, msg)
@@ -166,7 +171,7 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, msg)
 		return
 	}
-
+	fmt.Fprintf(os.Stderr, "C: %+v\n", c)
 	c.JSON(http.StatusOK, s)
 }
 

@@ -16,7 +16,12 @@ const createUser = (email, user, password, success, fail) => {
     };
 
     fetch("/user", requestOptions)
-        .then(response => response.text())
+        .then(response =>{
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            }
+            return response.text()
+        })
         .then(result => success(result))
         .catch(error => fail(error));
 }
@@ -33,7 +38,12 @@ const fetchAllSlalomers = (cookieval, success, fail)=>{
     };
     
     fetch("/users", requestOptions)
-        .then(response => response.text())
+        .then(response =>{
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            }
+            return response.text()
+        })
         .then(result => success(result))
         .catch(error => fail(error));
 }
@@ -46,12 +56,17 @@ const updateUser = (cookie, user, success,fail) =>{
     var requestOptions = {
         method: 'PUT',
         headers: myHeaders,
-        body: user,
+        body: JSON.stringify(user),
         redirect: 'follow'
     };
 
     fetch("/user", requestOptions)
-        .then(response => response.text())
+        .then(response =>{
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            }
+            return response.text()
+        })
         .then(result => success(result))
         .catch(error => fail(error));
 }

@@ -66,14 +66,16 @@ const renderUserMarker = (lat, lon, map, desc, icon, user) => {
     if (icon.length){
         iconM.iconUrl = icon
     }
+    let uicon = L.icon(iconM);
     let Options = {
         title:user,
+        alt: desc,
+        opacity: 0.75,
         draggable:false,
-        icon:iconM
+        icon:uicon
     }
-    debugger;
     let mymarker = new L.Marker([lat,lon], Options);
-    mymarker.bindTooltip(desc).openTooltip();
+    mymarker.bindTooltip(desc);
     mymarker.addTo(map);
     return mymarker;
 }
@@ -81,7 +83,8 @@ const renderUserMarker = (lat, lon, map, desc, icon, user) => {
 const getOtherSlalomers = ()=>{
     const success = (res)=>{
         const response = JSON.parse(res);
-        response.Users.forEach(val => renderUserMarker(val.location.lat, val.location.lon, window.map, val.user, val.photo, val.id));
+        console.log(response);
+        response.Users.map(val => renderUserMarker(val.location.lat, val.location.lon, window.map, val.user, val.photo, val.id));
     }
     const fail = (err)=>{
         console.warn(err);
@@ -221,8 +224,8 @@ const main = () => {
         if (errorCount){
             return;
         }
-        const handleError = (error) => {
-            debugger;
+        const handleError = (err) => {
+            const error = JSON.parse(err.message);
             console.warn(error);
             if(error.value.indexOf("slalomer_name_key") > -1){
                 user.classList.add("error");
@@ -236,8 +239,8 @@ const main = () => {
         createUser(email.value,user.value,user.password, updateLogin, handleError);
     });
 
-    let updateUser = document.getElementById('updateUser');
-    updateUser.addEventListener('click',(event)=>{
+    let upUser = document.getElementById('updateUser');
+    upUser.addEventListener('click',(event)=>{
         event.preventDefault();
         const displayname = document.getElementById('displayname');
         const accountemail = document.getElementById('accountemail');
@@ -252,8 +255,8 @@ const main = () => {
             "email": accountemail.value,
             "user": displayname.value,
             "location":{
-                "lat": lat.value,
-                "lon": lon.value,
+                "lat": parseFloat(lat.value),
+                "lon": parseFloat(lon.value),
                 "loc-name": placename.value
             }
         };

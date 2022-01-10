@@ -23,5 +23,5 @@ const checkLogin = () =>{
 }
 
 const logout = ()=>{
-    document.cookie = "mysession= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    sessionStorage.clear();
 }

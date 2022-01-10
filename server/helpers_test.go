@@ -16,7 +16,7 @@ func TestValidEmail(t *testing.T) {
 
 func TestSlalomEmail(t *testing.T) {
 	bad := "not@email.com"
-	good := "test@slalom.com"
+	good := "slkn@slalom.com"
 	if validSlalomEmail(bad) == true {
 		t.Errorf("%s is not a valid email.", bad)
 	}
