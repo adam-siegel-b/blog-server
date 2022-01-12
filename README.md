@@ -21,3 +21,4 @@ ensure you have go-migrate installed
 * Sessions stored in the DB
 * Uploadable profile images
 * JWT authentication
+* put middleware in front of routes that require login
