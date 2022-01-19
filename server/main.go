@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v4"
@@ -46,7 +47,7 @@ func main() {
 	if len(sp) == 0 {
 		sp = "./../static"
 	}
-	router.Static("/static", sp)
+	router.Use(static.Serve("/", static.LocalFile(sp, false)))
 
 	router.Run(":1337")
 }
