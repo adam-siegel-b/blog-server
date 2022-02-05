@@ -19,6 +19,12 @@ RUN go build -o /geo-org-chart
 ##
 FROM node:17.4-buster AS node-build
 WORKDIR /go/src/github.com/adam-siegel-b/geo-org-chart/react-app
+COPY package.json ./
+
+COPY yarn.lock ./
+
+RUN yarn install --frozen-lockfile
+RUN yarn build
 
 ##
 ## Deploy
