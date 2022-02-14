@@ -5,7 +5,7 @@ const createUser = (email, user, password, success, fail) => {
     const payload = JSON.stringify({
         "email": email,
         "user": user,
-        "password": password
+        "pass": password
     });
 
     const requestOptions = {
@@ -61,6 +61,34 @@ const updateUser = (cookie, user, success,fail) =>{
     };
 
     fetch("/user", requestOptions)
+        .then(response =>{
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            }
+            return response.text()
+        })
+        .then(result => success(result))
+        .catch(error => fail(error));
+}
+
+const LoginUser = (email, user, pass, success,fail) =>{
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "email": email,
+        "user": user,
+        "pass": pass
+      });
+
+    var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("/login", requestOptions)
         .then(response =>{
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text) })

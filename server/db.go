@@ -19,7 +19,7 @@ var UPDATE_SLALOMER = "UPDATE slalomer SET name = $2, email = $3, password = $4,
 var DELETE_SLALOMER = "DELETE FROM slalomer WHERE id=$1"
 
 var GET_ALL_SLALOMERS = "SELECT * FROM slalomer s INNER JOIN location l ON (l.id = s.location) LIMIT $1 OFFSET $2"
-var LOGIN_CHECK = "SELECT id, name, email, password FROM slalomer WHERE email=$1 and password=$2"
+var LOGIN_CHECK = "SELECT id, name, email, password FROM slalomer WHERE email=$1 or name=$2"
 
 var CREATE_LOCATION = "INSERT INTO location (id,name,latlon) VALUES ($1,$2,$3)"
 var READ_LOCATION = "SELECT id, name, latlon FROM Location WHERE id=$1"

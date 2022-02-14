@@ -184,6 +184,53 @@ const main = () => {
         event.target.classList.add("hide");
     });
 
+    // login handler
+    const login = document.getElementById('login');
+    login.addEventListener('click', (event)=>{
+        const user = document.getElementById('login-username');
+        const password = document.getElementById('login-password');
+        const errorMsg = document.getElementById('login-errors');
+
+        if (!user.value.length){
+            user.classList.add("error");
+            errorMsg.textContent += "User can't be blank. ";
+        }else{
+            user.classList.remove("error");
+            errorMsg.textContent.replace("Bad username or password. ","");
+            errorMsg.textContent.replace("User can't be blank. ","");
+        }
+        if (!password.value.length){
+            password.classList.add("error");
+            errorMsg.textContent += "password can't be blank. ";
+        }else{
+            password.classList.remove("error");
+            errorMsg.textContent.replace("Bad username or password. ","");
+            errorMsg.textContent.replace("password can't be blank. ","");
+        }
+
+        const fields = [user,password];
+        let errorCount = 0;
+        fields.map((item)=>{if (item.classList.contains("error")){errorCount++}});
+        if (errorCount){
+            return;
+        }
+
+        const handleError = (err) => {
+            const error = JSON.parse(err.message);
+            console.warn(error);
+            user.classList.add("error");
+            password.classList.add("error");
+            errorMsg.textContent += "Bad username or password. ";
+        }
+        let usr = user.value;
+        let email = ''; 
+        if (user.value.indexOf('@slalom.com') > -1){
+            email = user.value;
+            usr = '';
+        }
+        LoginUser(email, usr, password.value, updateLogin, handleError);
+    });
+
     // signup handler
     const signup = document.getElementById('signup');
     signup.addEventListener('click', (event)=>{

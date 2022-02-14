@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -64,10 +65,12 @@ func hashActiveUser(val interface{}) string {
 
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	fmt.Fprintf(os.Stderr, "pass: %s hash: %s\n", password, string(bytes))
 	return string(bytes), err
 }
 
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	fmt.Fprintf(os.Stderr, "error: %s\n", err)
 	return err == nil
 }

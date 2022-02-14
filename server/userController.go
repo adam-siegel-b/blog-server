@@ -33,6 +33,7 @@ func CreateUser(c *gin.Context) {
 	// remove SQL injection from Name
 	s.Name = stripSketchyChars(s.Name)
 
+	fmt.Fprintf(os.Stderr, "s: %v\n", s)
 	// Hash password (security first)
 	soHash, err := HashPassword(s.Password)
 	if err != nil {
@@ -42,6 +43,7 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 	s.Password = soHash
+	fmt.Fprintf(os.Stderr, "s: %v\n", s)
 
 	// Db Connection
 	conn, err := connect2DB()
