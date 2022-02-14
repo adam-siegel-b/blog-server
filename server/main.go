@@ -37,6 +37,7 @@ func main() {
 	// Auth
 	router.POST("/user", CreateUser)
 	router.PUT("/login", LogIn)
+	router.DELETE("/login", LogOut)
 	router.PUT("/user", UpdateUser)
 	router.GET("/user/", GetUser)
 	router.DELETE("/user", DeleteUser)

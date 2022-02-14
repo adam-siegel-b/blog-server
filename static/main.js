@@ -351,10 +351,8 @@ const main = () => {
     // logout handler
     const signout = document.getElementById('signout');
     signout.addEventListener('click', (event)=>{
-        debugger;
         event.preventDefault();
-        logout();
-        setLoggedIn(checkLogin());
+        LogOut(document.cookie,()=> setLoggedIn(checkLogin()),() => setLoggedIn(checkLogin()));
     });
 
     // Set up the OSM layer

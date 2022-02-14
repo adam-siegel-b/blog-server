@@ -36,10 +36,8 @@ func AuthReq(c *gin.Context) {
 
 func DeAuth(c *gin.Context) {
 	session := sessions.Default(c)
-	session.Set("token", "")
-	session.Set("user", "")
 	session.Clear()
-	session.Options(sessions.Options{Path: "/", MaxAge: -1})
+	// session.Options(sessions.Options{Path: "/", MaxAge: -1})
 	session.Save()
 }
 
@@ -50,6 +48,19 @@ func Authenticate(c *gin.Context, id string) {
 	sid := uuid.New()
 	sesh.Set("token", sid.String())
 	activeSession[sid.String()] = id
+	if err := sesh.Save(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save session"})
+		return
+	}
+}
+
+func DeAuthenticate(c *gin.Context) {
+	sesh := sessions.Default(c)
+	t := sesh.Get("token")
+	if t != nil {
+		delete(activeSession, t.(string))
+	}
+	sesh.Clear()
 	if err := sesh.Save(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save session"})
 		return
@@ -71,6 +82,5 @@ func HashPassword(password string) (string, error) {
 
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	fmt.Fprintf(os.Stderr, "error: %s\n", err)
 	return err == nil
 }

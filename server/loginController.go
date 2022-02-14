@@ -12,7 +12,7 @@ import (
 func LogIn(c *gin.Context) {
 	var s Slalomer
 	var s1 Slalomer
-	c.BindJSON(&s)
+	c.ShouldBindJSON(&s)
 
 	conn, err := connect2DB()
 	if err != nil {
@@ -31,8 +31,6 @@ func LogIn(c *gin.Context) {
 		return
 	}
 
-	fmt.Fprintf(os.Stderr, "s1: %v\n s: %v\n", s1, s)
-
 	if CheckPasswordHash(s.Password, s1.Password) {
 		Authenticate(c, s1.ID)
 		c.JSON(http.StatusOK, s1)
@@ -40,4 +38,9 @@ func LogIn(c *gin.Context) {
 	}
 	msg := Message{http.StatusNotFound, "Not Authorized", "Not Authorized"}
 	c.JSON(http.StatusNotFound, msg)
+}
+
+func LogOut(c *gin.Context) {
+	DeAuthenticate(c)
+	c.JSON(http.StatusOK, Message{http.StatusOK, "logout", "bye"})
 }

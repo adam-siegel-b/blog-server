@@ -98,3 +98,27 @@ const LoginUser = (email, user, pass, success,fail) =>{
         .then(result => success(result))
         .catch(error => fail(error));
 }
+
+const LogOut = (cookie, success,fail) =>{
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", cookie);
+
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: {},
+        redirect: 'follow'
+    };
+
+    fetch("/login", requestOptions)
+        .then(response =>{
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            }
+            return response.text()
+        })
+        .then(result => success(result))
+        .catch(error => fail(error));
+}

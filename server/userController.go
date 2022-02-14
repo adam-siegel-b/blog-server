@@ -281,8 +281,8 @@ func GetAllUsers(c *gin.Context) {
 		if loc.Valid {
 			l.ID = loc.String
 			l.Name = name.String
-			l.Lat = latlon.P.Y
-			l.Lon = latlon.P.X
+			l.Lat = latlon.P.X
+			l.Lon = latlon.P.Y
 			fmt.Fprintf(os.Stderr, "lID name latlon: %+v %+v %+v\n", lID.String, name.String, latlon)
 		}
 		r.Password = ""

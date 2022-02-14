@@ -21,7 +21,3 @@ const checkLogin = () =>{
     }
     return false;
 }
-
-const logout = ()=>{
-    sessionStorage.clear();
-}
